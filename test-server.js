@@ -35,6 +35,17 @@ describe('test server', function () {
         });
     });
 
+    it('does not return user if user does not exist', (done) => {
+        request(server)
+            .get('/api/get-user/1')
+            .expect(404)
+            .end((err, res) => {
+                if (err) return done(err);
+                expect(Object.keys(res.body).length).to.equal(1);
+                done();
+            });
+    });
+
     it('posts a user', (done) => {
         const user = {
             firstName: 'Timmy',
