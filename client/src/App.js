@@ -76,9 +76,13 @@ class App extends React.Component {
         this.setState({registerUser});
     }
 
-    createUser(event) {
+    async createUser(event) {
         event.preventDefault();
-        this.post('/api/users/', this.state.registerUser);
+        try {
+            await this.post('/api/users/', this.state.registerUser);
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
     }
 
     render() {
