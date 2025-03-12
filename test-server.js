@@ -48,4 +48,43 @@ describe('test server', function () {
             done();
         });
     });
+
+    it('returns 400 for invalid user data - missing firstName', (done) => {
+        const invalidUser = {
+            firstName: '',
+            email: 'valid@gmail.com',
+            password: 'long-enough-password',
+        };
+        request(server)
+            .post('/api/users/')
+            .type('application/json')
+            .send(invalidUser)
+            .expect(400, done);
+    });
+
+  it('returns 400 for invalid user data - invalid email', (done) => {
+      const invalidUser = {
+          firstName: 'Test',
+          email: 'invalid-email',
+          password: 'long-enough-password',
+      };
+      request(server)
+          .post('/api/users/')
+          .type('application/json')
+          .send(invalidUser)
+          .expect(400, done);
+    });
+
+    it('returns 400 for invalid user data - short password', (done) => {
+      const invalidUser = {
+          firstName: 'Test',
+          email: 'valid@gmail.com',
+          password: 'short',
+      };
+      request(server)
+          .post('/api/users/')
+          .type('application/json')
+          .send(invalidUser)
+          .expect(400, done);
+    });
 });
