@@ -11,11 +11,13 @@ class App extends React.Component {
                 firstName: '',
                 email: '',
                 password: '',
+                favouriteFruit: '',
             },
             registerUser: {
                 firstName: '',
                 email: '',
                 password: '',
+                favouriteFruit: 'Apple',
             },
         };
 
@@ -104,6 +106,17 @@ class App extends React.Component {
                     <input name="firstName" onChange={this.handleInputChange}/>
                     <label>Email</label>
                     <input name="email" onChange={this.handleInputChange}/>
+                    <label>Favourite Fruit</label>
+                    <select
+                      name="favouriteFruit"
+                      defaultValue={this.state.selectValue}
+                      onChange={this.handleInputChange}
+                    >
+                        <option value="Apple">Apple</option>
+                        <option value="Apricot">Apricot</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Mango">Mango</option>
+                    </select>
                     <label>Password</label>
                     <input name="password" onChange={this.handleInputChange}/>
                     <button type="submit">Create User</button>

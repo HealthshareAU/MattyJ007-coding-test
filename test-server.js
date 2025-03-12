@@ -26,6 +26,7 @@ describe('test server', function () {
             firstName: 'Jimmy',
             email: 'jimmy@gmail.com',
             password: 'iamnotfondoficecream1234',
+            favouriteFruit: 'Apple',
         };
         request(server).get('/api/get-user/2').expect(200).end((err, res) => {
             expect(res.body.user.firstName).to.equal(user.firstName);
@@ -40,6 +41,7 @@ describe('test server', function () {
             firstName: 'Timmy',
             email: 'Timmy@gmail.com',
             password: 'password123',
+            favouriteFruit: 'Banana',
         };
         request(server).post(
             '/api/users/'
@@ -48,4 +50,20 @@ describe('test server', function () {
             done();
         });
     });
+
+    it('invalid user entry - fruit not available', (done) => {
+      const user = {
+          firstName: 'Timmy',
+          email: 'Timmy@gmail.com',
+          password: 'password123',
+          favouriteFruit: 'InvalidFruit',
+      };
+      request(server).post(
+          '/api/users/'
+      ).type('application/json').send(user).expect(400).end((err, res) => {
+        if (err) return done(err);
+          expect(res.body.errors.favouriteFruit.msg).to.equal('Favourite Fruit must be one of: Apple, Banana, Apricot, Mango');
+          done();
+      });
+  });
 });

@@ -54,6 +54,35 @@ exports[`snapshot test of the react dom 1`] = `
       onChange={[Function]}
     />
     <label>
+      Favourite Fruit
+    </label>
+    <select
+      defaultValue={undefined}
+      name="favouriteFruit"
+      onChange={[Function]}
+    >
+      <option
+        value="Apple"
+      >
+        Apple
+      </option>
+      <option
+        value="Apricot"
+      >
+        Apricot
+      </option>
+      <option
+        value="Banana"
+      >
+        Banana
+      </option>
+      <option
+        value="Mango"
+      >
+        Mango
+      </option>
+    </select>
+    <label>
       Password
     </label>
     <input
