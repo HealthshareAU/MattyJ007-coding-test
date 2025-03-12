@@ -22,8 +22,8 @@ let existingUsers = {
 
 const userValidation = [
     check(
-        'first_name'
-    ).exists().withMessage('You must include a first name'),
+        'firstName'
+    ).not().isEmpty().withMessage('You must include a first name'),
     check('email').isEmail().withMessage('Must include email'),
     check(
         'password'
@@ -37,11 +37,9 @@ app.get('/api/home/', (request, response) => {
 
 app.get('/api/get-user/:id([0-9]{1})', (request, response) => {
     const id = request.params.id;
-    let user = null;
-    try {
-        user = existingUsers[id];
-    } catch(err) {
-        response.status(404).send({errors: ['User not found']});
+    let user = existingUsers[id];
+    if(!user) {
+        return response.status(404).send({errors: ['User not found']});
     }
 
     response.send({user})
@@ -50,12 +48,12 @@ app.get('/api/get-user/:id([0-9]{1})', (request, response) => {
 app.post('/api/users/', userValidation, (request, response) => {
     const errors = validationResult(request);
     if(!errors.isEmpty()) {
-        response.status(404).send({errors: errors.mapped()});
+        response.status(400).send({errors: errors.mapped()});
         return;
     }
 
     const user = {
-        firstName: request.body.first_name,
+        firstName: request.body.firstName,
         email: request.body.email,
         password: request.body.password,
     };
