@@ -4,7 +4,10 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "test-server": "mocha test-server.js",
+    "test-client": "cd client && yarn test",
+    "test": "yarn test-server && yarn test-client"
   },
   "dependencies": {
     "express": "^4.16.2",
