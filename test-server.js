@@ -37,7 +37,7 @@ describe('test server', function () {
 
     it('posts a user', (done) => {
         const user = {
-            first_name: 'Timmy',
+            firstName: 'Timmy',
             email: 'Timmy@gmail.com',
             password: 'password123',
         };
