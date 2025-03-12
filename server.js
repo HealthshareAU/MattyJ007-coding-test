@@ -50,7 +50,7 @@ app.get('/api/get-user/:id([0-9]{1})', (request, response) => {
 app.post('/api/users/', userValidation, (request, response) => {
     const errors = validationResult(request);
     if(!errors.isEmpty()) {
-        response.status(404).send({errors: errors.mapped()});
+        response.status(400).send({errors: errors.mapped()});
         return;
     }
 
