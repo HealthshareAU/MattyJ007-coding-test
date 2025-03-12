@@ -28,6 +28,7 @@ describe('test server', function () {
             password: 'iamnotfondoficecream1234',
         };
         request(server).get('/api/get-user/2').expect(200).end((err, res) => {
+            if (err) return done(err);
             expect(res.body.user.firstName).to.equal(user.firstName);
             expect(res.body.user.email).to.equal(user.email);
             expect(res.body.user.password).to.equal(user.password);
@@ -55,6 +56,7 @@ describe('test server', function () {
         request(server).post(
             '/api/users/'
         ).type('application/json').send(user).expect(200).end((err, res) => {
+            if (err) return done(err);
             expect(res.body.message).to.equal('User created successfully');
             done();
         });
