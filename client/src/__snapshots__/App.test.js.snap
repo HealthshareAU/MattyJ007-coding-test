@@ -43,7 +43,7 @@ exports[`snapshot test of the react dom 1`] = `
       First Name
     </label>
     <input
-      name="first_name"
+      name="firstName"
       onChange={[Function]}
     />
     <label>
