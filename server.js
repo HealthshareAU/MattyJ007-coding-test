@@ -23,7 +23,7 @@ let existingUsers = {
 const userValidation = [
     check(
         'firstName'
-    ).exists().withMessage('You must include a first name'),
+    ).not().isEmpty().withMessage('You must include a first name'),
     check('email').isEmail().withMessage('Must include email'),
     check(
         'password'
