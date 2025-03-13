@@ -32,7 +32,7 @@ const userValidation = [
     ).isLength({min: 8}).withMessage('Password must be at least 8 characters'),
     check(
       'favouriteFruit'
-  ).exists().isString().isIn(['Apple', 'Banana', 'Apricot', 'Mango']).withMessage('Favourite Fruit must be one of: Apple, Banana, Apricot, Mango'),
+  ).exists().isIn(['Apple', 'Banana', 'Apricot', 'Mango']).withMessage('Favourite Fruit must be one of: Apple, Banana, Apricot, Mango'),
 ];
 
 app.get('/api/home/', (request, response) => {
