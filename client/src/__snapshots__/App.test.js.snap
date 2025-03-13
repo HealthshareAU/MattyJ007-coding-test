@@ -43,7 +43,7 @@ exports[`snapshot test of the react dom 1`] = `
       First Name
     </label>
     <input
-      name="first_name"
+      name="firstName"
       onChange={[Function]}
     />
     <label>
@@ -53,6 +53,35 @@ exports[`snapshot test of the react dom 1`] = `
       name="email"
       onChange={[Function]}
     />
+    <label>
+      Favourite Fruit
+    </label>
+    <select
+      defaultValue={undefined}
+      name="favouriteFruit"
+      onChange={[Function]}
+    >
+      <option
+        value="Apple"
+      >
+        Apple
+      </option>
+      <option
+        value="Apricot"
+      >
+        Apricot
+      </option>
+      <option
+        value="Banana"
+      >
+        Banana
+      </option>
+      <option
+        value="Mango"
+      >
+        Mango
+      </option>
+    </select>
     <label>
       Password
     </label>

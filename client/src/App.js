@@ -8,14 +8,16 @@ class App extends React.Component {
         this.state = {
             id: '',
             user: {
-                first_name: '',
+                firstName: '',
                 email: '',
                 password: '',
+                favouriteFruit: '',
             },
             registerUser: {
-                first_name: '',
+                firstName: '',
                 email: '',
                 password: '',
+                favouriteFruit: 'Apple',
             },
         };
 
@@ -74,9 +76,13 @@ class App extends React.Component {
         this.setState({registerUser});
     }
 
-    createUser(event) {
+    async createUser(event) {
         event.preventDefault();
-        this.post('/api/users/', this.state.registerUser);
+        try {
+            await this.post('/api/users/', this.state.registerUser);
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
     }
 
     render() {
@@ -87,7 +93,7 @@ class App extends React.Component {
                 </header>
                 <div>
                     <p className="app-intro">
-                        Name: {this.state.user.first_name}
+                        Name: {this.state.user.firstName}
                     </p>
                     <p className="app-intro">
                         Email: {this.state.user.email}
@@ -101,9 +107,20 @@ class App extends React.Component {
                 </div>
                 <form onSubmit={this.createUser}>
                     <label>First Name</label>
-                    <input name="first_name" onChange={this.handleInputChange}/>
+                    <input name="firstName" onChange={this.handleInputChange}/>
                     <label>Email</label>
-                    <input name="email_address" onChange={this.handleInputChange}/>
+                    <input name="email" onChange={this.handleInputChange}/>
+                    <label>Favourite Fruit</label>
+                    <select
+                      name="favouriteFruit"
+                      defaultValue={this.state.selectValue}
+                      onChange={this.handleInputChange}
+                    >
+                        <option value="Apple">Apple</option>
+                        <option value="Apricot">Apricot</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Mango">Mango</option>
+                    </select>
                     <label>Password</label>
                     <input name="password" onChange={this.handleInputChange}/>
                     <button type="submit">Create User</button>
